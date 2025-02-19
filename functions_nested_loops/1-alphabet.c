@@ -1,17 +1,13 @@
 #include "main.h"
-
 /**
- * print_alphabet - Prints the alphabet in lowercase
+ * print_alphabet - Print the Alphabet
  */
 void print_alphabet(void)
 {
-	char alphabet[] = "abcdefghijklmnopqrstuvwxyz";
-	int i;
+	int abc;
 
-	for (i = 0; alphabet[i] != '\0'; i++)
-	{
-		_putchar(alphabet[i]);
-	}
+	/* This Print the full alphabet with a new line at the end*/
+	for (abc = 'a'; abc <= 'z'; abc++)
+		_putchar(abc);
 	_putchar('\n');
 }
-
