@@ -1,14 +1,16 @@
 #include "main.h"
-/**
- * print_sign - It sees if the number is <0 or >0
- * @n: it the number
- * Return: 1 if n is positive, 0 otherwise, -1 if negative
- *
- */
 
+/**
+ * print_sign - prints the sign of a number
+ * @n: the number to check
+ *
+ * Return: 1 if n is greater than 0,
+ *         0 if n is zero,
+ *         -1 if n is less than 0
+ */
 int print_sign(int n)
 {
-	if (n < 0)
+	if (n > 0)
 	{
 		_putchar('+');
 		return (1);
@@ -24,3 +26,4 @@ int print_sign(int n)
 		return (-1);
 	}
 }
+
