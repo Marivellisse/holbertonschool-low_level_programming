@@ -3,7 +3,7 @@
  * _abs - give the asbolute value
  * @n: It's the number
  */
-int _abs(int n)
+int abs(int n)
 {
 	/* This is work out the negative signs to make it the asbolute value*/
 	if (n < 0)
