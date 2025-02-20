@@ -1,16 +1,16 @@
 #include "main.h"
-
 /**
  * print_sign - It sees if the number is <0 or >0
  * @n: it the number
- * Return: 1 if positive or 0 if zero or -1 if negative
+ * Return: 0 success
+ *
  */
+
 int print_sign(int n)
 {
-	/* This whole line of if statemant are check for postive and negative numbers*/
 	if (n < 0)
 	{
-		_putchar('-');
+		_putchar('+');
 		return (1);
 	}
 	else if (n == 0)
@@ -20,7 +20,7 @@ int print_sign(int n)
 	}
 	else
 	{
-		_putchar('+');
-		return (1);
+		_putchar('-');
+		return (-1);
 	}
 }
