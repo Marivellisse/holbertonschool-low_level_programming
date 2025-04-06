@@ -1,41 +1,36 @@
 #include "main.h"
-/**
- * main - It append the file
- * @argc: argument counter
- * @argv: argument vector
- * Return: always return 0
- */
-int main(int argc, char *argv[])
-{
-	int fd, rd, wr, fp;
-	char *buf[1024];
+#include <fcntl.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-	if (argc != 3)
-		dprintf(2, "Usage: cp file_from file_to\n"), exit(97);
-	if (!argv[1])
-	{
-		dprintf(2, "Error: Can't read from file %s\n", argv[1]), exit(98);
-	}
-	fp = open(argv[2], O_WRONLY | O_TRUNC | O_CREAT, 0664);
-	if (fp == -1)
-		dprintf(2, "Error: Can't write to %s\n", argv[2]), exit(99);
-	fd = open(argv[1], O_RDONLY);
-	if (fd == -1)
-	{
-		dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-		exit(98);
-	}
-	while ((rd = read(fd, buf, 1024)) != 0)
-	{
-		if (rd == -1)
-			dprintf(2, "Error: Can't read from file %s\n", argv[1]), exit(98);
-		wr = write(fp, buf, rd);
-		if (wr == -1)
-			dprintf(2, "Error: Can't write to %s\n", argv[2]), exit(99);
-	}
-	if ((close(fd)) == -1)
-		dprintf(2, "Error: Can't close fd %d\n", fd), exit(100);
-	if ((close(fp)) == -1)
-		dprintf(2, "Error: Can't close fd %d\n", fp), exit(100);
-	return (0);
+#define BUF_SIZE 1024
+
+void close_fd(int fd);
+void check_rw_error(int status, int fd_from, int fd_to,
+		    const char *msg, const char *arg, int code);
+
+/**
+ * error_exit - Prints an error message and exits.
+ * @msg: Message format.
+ * @arg: Argument to print.
+ * @code: Exit code.
+ */
+void error_exit(const char *msg, const char *arg, int code)
+{
+	dprintf(STDERR_FILENO, msg, arg);
+	exit(code);
 }
+
+/**
+ * copy_file - Copies content from one file to another.
+ * @src: Source file name.
+ * @dest: Destination file name.
+ */
+void copy_file(const char *src, const char *dest)
+{
+	int fd_from, fd_to, r, w;
+	char buffer[BUF_SIZE];
+
+	fd_from = open(src, O_
+
